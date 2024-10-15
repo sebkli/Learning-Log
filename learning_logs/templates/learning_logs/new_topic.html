@@ -1,0 +1,18 @@
+{% extends 'learning_logs/base.html' %} {% load widget_tweaks %} {% block content %}
+<header class="text-center text-warning my-4">
+  <h1>Add new topic.</h1>
+</header>
+<form
+  action="{% url 'learning_logs:new_topic' %}"
+  method="post"
+  class="my-3 pt-1 mx-2 mx-sm-5 px-1 px-md-5"
+> {% csrf_token %}
+  <div class="form-floating mb-2 mx-0 me-sm-5 pe-5">
+      {% render_field form.text class+='form-control bg-black text-light' placeholder='Topic' %}
+      <label class="form-label text-warning" for="id_text"
+        >Topic</label
+      >
+    </div>
+  <button name="submit" class="btn btn-warning mt-3">Add topic</button>
+</form>
+{% endblock content %}

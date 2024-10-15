@@ -1,0 +1,25 @@
+{% extends 'learning_logs/base.html' %} {% load widget_tweaks %} {% block content %}
+<header class="text-center text-warning my-4">
+  <h1>Edit entry.</h1>
+</header>
+<section class="container-sm">
+  <p class="display-4 fs-5">
+    Go back to<a
+      href="{% url 'learning_logs:topic' topic.id %}"
+      class="link-warning ms-2"
+      >{{ topic }}</a
+    >
+  </p>
+  <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post">
+    {% csrf_token %}
+    <div class="form-floating mb-2 mx-0 me-sm-5 pe-5">
+      {% render_field form.text class+='form-control bg-black text-light h-25'cols=30 %}
+      <label class="form-label text-warning" for="id_text"
+        >Entry</label
+      >
+
+      <button name="submit" class="btn btn-warning mt-3">Save changes</button>
+    </div>
+  </form>
+</section>
+{% endblock content %}

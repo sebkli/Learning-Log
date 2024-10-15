@@ -1,0 +1,36 @@
+{% extends 'learning_logs/base.html' %} {% load widget_tweaks %} {% block content %}
+<header class="text-center text-warning my-4">
+  <h1>Create an account</h1>
+</header>
+<section class="container-sm bg-dark border mx-auto">
+  <form
+    action="{% url 'accounts:register' %}"
+    method="post"
+    class="my-3 pt-1 mx-2 mx-sm-5 px-1 px-md-5"
+  >
+    {% csrf_token %}
+    <div class="form-floating mb-2 mx-0 me-sm-5 pe-5">
+      {% render_field form.username class+='form-control bg-black text-light' placeholder='Username' %}
+      <label class="form-label text-warning" for="id_username"
+        >{{form.username.label}}</label
+      >
+      <div class="form-text text-danger mt-1">{{form.username.errors}}</div>
+    </div>
+    <div class="form-floating mb-2 mx-0 me-sm-5 pe-5">
+      {% render_field form.password1 class+='form-control bg-black text-light' placeholder='Password' %}
+      <label class="form-label text-warning" for="id_password1"
+        >{{form.password1.label}}</label
+      >
+      <div class="form-text text-danger mt-1">{{form.password1.errors}}</div>
+    </div>
+    <div class="form-floating mx-0 me-sm-5 pe-5">
+      {% render_field form.password2 class+='form-control bg-black text-light' placeholder='Password confirmation' %}
+      <label class="form-label text-warning" for="id_password2"
+        >{{form.password2.label}}</label
+      >
+      <div class="form-text text-danger mt-2">{{form.password2.errors}}</div>
+    </div>
+    <button name="submit" class="btn btn-warning mt-3">Register</button>
+  </form>
+</section>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'learning_logs/base.html' %} {% block content %}
+<header class="container-fluid text-warning text-center my-4">
+  <h1 class="mb-4">Topics</h1>
+</header>
+<section class="container-sm px-0 px-md-5 px-sm-4">
+  <ul class="list-group text-center mx-5">
+    {% for topic in topics %}
+    <li class="list-group-item bg-dark border mb-1 mb-sm-2">
+      <a
+        href="{% url 'learning_logs:topic' topic.id %}"
+        aria-current="true"
+        class="link-warning"
+      >
+        {{ topic.text }}</a
+      >
+    </li>
+    {% empty %}
+  </ul>
+  <h2 class="text-warning">No topics have been added yet.</h2>
+  {% endfor %}
+  <a
+    class="btn btn-warning mt-3 align-self-start"
+    href="{% url 'learning_logs:new_topic' %}"
+    >Add new topic
+  </a>
+</section>
+{% endblock content %}

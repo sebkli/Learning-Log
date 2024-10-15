@@ -1,0 +1,4 @@
+git ignore 
+ll_env/
+__pycache__/
+*.sqlite3

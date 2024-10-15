@@ -1,0 +1,25 @@
+{% extends 'learning_logs/base.html' %} {% block content %}
+<header class="container-fluid bg-dark text-light text-center py-5 px-5">
+  <div class="py-5 p-0 px-sm-5">
+    <h1 class="h1 mb-4">Track Your Learning Journey!</h1>
+    <p class="display-6 mb-5">
+      Empower your growth by keeping track of your learning milestones. From
+      quick notes to detailed reflections, log your experiences and track your
+      progress to stay motivated and achieve your goals.
+    </p>
+    {% if user.is_authenticated %}
+    <div class="btn-group btn-group-lg" role="group">
+      <a class="btn btn-warning me-4" href="{% url 'learning_logs:new_topic' %}">Add new topic
+      </a>
+      <a class="btn btn-outline-warning" href="{% url 'learning_logs:topics' %}">Browse existing topics</a>
+    </div>
+    {% else %}
+    <div class="btn-group btn-group-lg" role="group">
+      <a class="btn btn-warning me-4" href="{% url 'accounts:login' %}">Log in
+      </a>
+      <a class="btn btn-outline-warning" href="{% url 'accounts:register' %}">Register</a>
+    </div>
+    {% endif %}
+  </div>
+</header>
+{% endblock content %}

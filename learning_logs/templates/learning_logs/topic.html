@@ -1,0 +1,39 @@
+{% extends 'learning_logs/base.html' %} {% block content %}
+<header class="container-fluid text-warning text-center my-4">
+  <h2 class="ms-3">Topic: {{topic.text}}</h2>
+</header>
+<section class="container-sm px-0 px-md-5 px-sm-4">
+  <a
+    class="btn btn-outline-warning mt-2 ms-3"
+    href="{% url 'learning_logs:new_entry'  topic.id %}"
+    >Add new entry
+  </a>
+  <div class="row mx-2 my-3">
+    {% for entry in entries %}
+    <div
+      class="card border-warning bg-dark text-warnnig col-12 col-md-6 col-lg-4 m-0 my-sm-2 mx-lg-2"
+    >
+      <div class="card-body d-flex flex-column align-items-start">
+        <h3 class="card-title">{{topic.text}}</h3>
+        <p class="card-text text-wrap flex-fill">{{ entry.text }}</p>
+        <a
+          href="{% url 'learning_logs:edit_entry' entry.id %}"
+          class="card-link btn btn-warning"
+        >
+          edit entry</a
+        >
+        <div
+          class="card-footer text-body-secondary border-top align-self-stretch mt-5"
+        >
+          {{ entry.date_added|date:'M d, Y H:i' }}
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <h4 class="container-fluid text-warning mt-1">
+      No entries have been added yet.
+    </h4>
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}
